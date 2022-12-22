@@ -1,0 +1,1609 @@
+package com.sample
+import javax.swing.JOptionPane
+import javax.swing.JFrame
+import org.kie.api.runtime.KieRuntime
+import javax.swing.JRadioButton
+import javax.swing.JPanel
+global JFrame frame
+global javax.swing.JTextArea textArea
+import java.util.ArrayList
+import java.util.List
+import java.util.Arrays;
+import java.util.ArrayList
+import javax.swing.JLabel;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import com.sample.Answer;
+rule "Would you Like to watch a movie or a Television show?"
+    when
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Movie");
+    options.add("Television");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Would you Like to watch a movie or a Television show?", options);
+    insert (answer);
+end
+
+rule "Would you Like to watch a movie or a Television show? - Movie - What genre?"
+    when
+    Answer(question == "Would you Like to watch a movie or a Television show?" && answer == "Movie")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Action");
+    options.add("Comedy");
+    options.add("Drama");
+    options.add("Documentaries");
+    options.add("Timeless Classics");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What genre?", options);
+    insert (answer);
+end
+
+rule "What genre? - Action - With real actors?"
+    when
+    Answer(question == "What genre?" && answer == "Action")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Live Action");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "With real actors?", options);
+    insert (answer);
+end
+
+rule "With real actors? - Live Action - Martial arts?"
+    when
+    Answer(question == "With real actors?" && answer == "Live Action")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Fuck Yeah");
+    options.add("Nah");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Martial arts?", options);
+    insert (answer);
+end
+
+rule "Martial arts? - Fuck Yeah - What kind?"
+    when
+    Answer(question == "Martial arts?" && answer == "Fuck Yeah")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Realistic");
+    options.add("Tarantino directed revenge movie");
+    options.add("Special effects out of the wazoo");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind?", options);
+    insert (answer);
+end
+
+rule "What kind? - Realistic - Way of the Dragon."
+    when
+    Answer(question == "What kind?" && answer == "Realistic")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Way of the Dragon.");
+end
+
+
+rule "What kind? - Tarantino directed revenge movie - Kill Bill"
+    when
+    Answer(question == "What kind?" && answer == "Tarantino directed revenge movie")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Kill Bill");
+end
+
+
+rule "What kind? - Special effects out of the wazoo - The Five Venoms"
+    when
+    Answer(question == "What kind?" && answer == "Special effects out of the wazoo")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Five Venoms");
+end
+
+
+rule "Martial arts? - Nah - What atmosphere then?"
+    when
+    Answer(question == "Martial arts?" && answer == "Nah")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Serious");
+    options.add("Goofy");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What atmosphere then?", options);
+    insert (answer);
+end
+
+rule "What atmosphere then? - Serious - SciFi or Comic books?"
+    when
+    Answer(question == "What atmosphere then?" && answer == "Serious")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("SciFi");
+    options.add("Comic books");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "SciFi or Comic books?", options);
+    insert (answer);
+end
+
+rule "SciFi or Comic books? - SciFi - What kind of SciFi action?"
+    when
+    Answer(question == "SciFi or Comic books?" && answer == "SciFi")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Asteroid Apocalypse");
+    options.add("Cyberpunk Cop in huge city");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind of SciFi action?", options);
+    insert (answer);
+end
+
+rule "What kind of SciFi action? - Asteroid Apocalypse - Armageddon."
+    when
+    Answer(question == "What kind of SciFi action?" && answer == "Asteroid Apocalypse")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Armageddon.");
+end
+
+
+rule "What kind of SciFi action? - Cyberpunk Cop in huge city - Judge Dredd"
+    when
+    Answer(question == "What kind of SciFi action?" && answer == "Cyberpunk Cop in huge city")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Judge Dredd");
+end
+
+
+rule "SciFi or Comic books? - Comic books - what kind?"
+    when
+    Answer(question == "SciFi or Comic books?" && answer == "Comic books")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Ron Pearlman in a shit ton of makeup");
+    options.add("Film Noir");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "what kind?", options);
+    insert (answer);
+end
+
+rule "what kind? - Ron Pearlman in a shit ton of makeup - Hellboy"
+    when
+    Answer(question == "what kind?" && answer == "Ron Pearlman in a shit ton of makeup")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Hellboy");
+end
+
+
+rule "what kind? - Film Noir - Sin City"
+    when
+    Answer(question == "what kind?" && answer == "Film Noir")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Sin City");
+end
+
+
+rule "What atmosphere then? - Goofy - British?"
+    when
+    Answer(question == "What atmosphere then?" && answer == "Goofy")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("British");
+    options.add("Not British");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "British?", options);
+    insert (answer);
+end
+
+rule "British? - British - Hot Fuzz"
+    when
+    Answer(question == "British?" && answer == "British")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Hot Fuzz");
+end
+
+
+rule "British? - Not British - What kind of non"
+    when
+    Answer(question == "British?" && answer == "Not British")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Homage to the 80s?");
+    options.add("Actually from the 80s");
+    options.add("Tarantino directed movie about  people killing Nazis");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind of non", options);
+    insert (answer);
+end
+
+rule "What kind of non - Homage to the 80s? - Kung Fury"
+    when
+    Answer(question == "What kind of non" && answer == "Homage to the 80s?")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Kung Fury");
+end
+
+
+rule "What kind of non - Actually from the 80s - Big Trouble in Little Cgina"
+    when
+    Answer(question == "What kind of non" && answer == "Actually from the 80s")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Big Trouble in Little Cgina");
+end
+
+
+rule "What kind of non - Tarantino directed movie about  people killing Nazis - Inglorious Basterds"
+    when
+    Answer(question == "What kind of non" && answer == "Tarantino directed movie about  people killing Nazis")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Inglorious Basterds");
+end
+
+
+rule "What genre? - Comedy - From Coen Brothers?"
+    when
+    Answer(question == "What genre?" && answer == "Comedy")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Sure Thing");
+    options.add("Nah, but how about Tarantino");
+    options.add("Nah");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "From Coen Brothers?", options);
+    insert (answer);
+end
+
+rule "From Coen Brothers? - Sure Thing - Which of their stories?"
+    when
+    Answer(question == "From Coen Brothers?" && answer == "Sure Thing")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("One of the greatest things to happen to this earth");
+    options.add("The Odyssey set in depression era south");
+    options.add("Minesotan banker tries to ransom his own wife. Steve Buscemi goes in a woodchipper");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Which of their stories?", options);
+    insert (answer);
+end
+
+rule "Which of their stories? - One of the greatest things to happen to this earth - Go to Amazon.com and order The Big Lebowski"
+    when
+    Answer(question == "Which of their stories?" && answer == "One of the greatest things to happen to this earth")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Go to Amazon.com and order The Big Lebowski");
+end
+
+
+rule "Which of their stories? - The Odyssey set in depression era south - Oh Brother, Where art Thou"
+    when
+    Answer(question == "Which of their stories?" && answer == "The Odyssey set in depression era south")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Oh Brother, Where art Thou");
+end
+
+
+rule "Which of their stories? - Minesotan banker tries to ransom his own wife. Steve Buscemi goes in a woodchipper - Fargo"
+    when
+    Answer(question == "Which of their stories?" && answer == "Minesotan banker tries to ransom his own wife. Steve Buscemi goes in a woodchipper")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Fargo");
+end
+
+
+rule "From Coen Brothers? - Nah, but how about Tarantino - Which of his stories?"
+    when
+    Answer(question == "From Coen Brothers?" && answer == "Nah, but how about Tarantino")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Nonlinear story about gangsters");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Which of his stories?", options);
+    insert (answer);
+end
+
+rule "Which of his stories? - Nonlinear story about gangsters - Pulp Fiction"
+    when
+    Answer(question == "Which of his stories?" && answer == "Nonlinear story about gangsters")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Pulp Fiction");
+end
+
+
+rule "From Coen Brothers? - Nah - What kind of comedy?"
+    when
+    Answer(question == "From Coen Brothers?" && answer == "Nah")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Live action");
+    options.add("Animated");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind of comedy?", options);
+    insert (answer);
+end
+
+rule "What kind of comedy? - Live action - How fucked up do you want it to be?"
+    when
+    Answer(question == "What kind of comedy?" && answer == "Live action")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("A little bit fucked up");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "How fucked up do you want it to be?", options);
+    insert (answer);
+end
+
+rule "How fucked up do you want it to be? - A little bit fucked up - You sure you want it a bit fucked up?"
+    when
+    Answer(question == "How fucked up do you want it to be?" && answer == "A little bit fucked up")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Okay, a lot a bit fucked up");
+    options.add("No, thanks");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "You sure you want it a bit fucked up?", options);
+    insert (answer);
+end
+
+rule "You sure you want it a bit fucked up? - Okay, a lot a bit fucked up - Do you mean it?"
+    when
+    Answer(question == "You sure you want it a bit fucked up?" && answer == "Okay, a lot a bit fucked up")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Nah, just a little bit. A childlike man's bike is stolen and he tracks it down");
+    options.add("Yes");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Do you mean it?", options);
+    insert (answer);
+end
+
+rule "Do you mean it? - Nah, just a little bit. A childlike man's bike is stolen and he tracks it down - Pee"
+    when
+    Answer(question == "Do you mean it?" && answer == "Nah, just a little bit. A childlike man's bike is stolen and he tracks it down")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Pee");
+end
+
+
+rule "Do you mean it? - Yes - Trainspotting"
+    when
+    Answer(question == "Do you mean it?" && answer == "Yes")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Trainspotting");
+end
+
+
+rule "You sure you want it a bit fucked up? - No, thanks - What kind of comedy then?"
+    when
+    Answer(question == "You sure you want it a bit fucked up?" && answer == "No, thanks")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("A Classic?");
+    options.add("Weird?");
+    options.add("Political");
+    options.add("Horror");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind of comedy then?", options);
+    insert (answer);
+end
+
+rule "What kind of comedy then? - A Classic? - An actually good one?"
+    when
+    Answer(question == "What kind of comedy then?" && answer == "A Classic?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("A good one. A musical set in 50s suburbia.");
+    options.add("A shitty one?");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "An actually good one?", options);
+    insert (answer);
+end
+
+rule "An actually good one? - A good one. A musical set in 50s suburbia. - Grease."
+    when
+    Answer(question == "An actually good one?" && answer == "A good one. A musical set in 50s suburbia.")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Grease.");
+end
+
+
+rule "An actually good one? - A shitty one? - A sexy shitty one?"
+    when
+    Answer(question == "An actually good one?" && answer == "A shitty one?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("No, just plain old shitty one");
+    options.add("Yes");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "A sexy shitty one?", options);
+    insert (answer);
+end
+
+rule "A sexy shitty one? - No, just plain old shitty one - Animal House"
+    when
+    Answer(question == "A sexy shitty one?" && answer == "No, just plain old shitty one")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Animal House");
+end
+
+
+rule "A sexy shitty one? - Yes - Barbarella"
+    when
+    Answer(question == "A sexy shitty one?" && answer == "Yes")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Barbarella");
+end
+
+
+rule "What kind of comedy then? - Weird? - What kind of weird?"
+    when
+    Answer(question == "What kind of comedy then?" && answer == "Weird?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Paper Mache Mask weird?");
+    options.add("Hitler time traveling weird");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind of weird?", options);
+    insert (answer);
+end
+
+rule "What kind of weird? - Paper Mache Mask weird? - Frank"
+    when
+    Answer(question == "What kind of weird?" && answer == "Paper Mache Mask weird?")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Frank");
+end
+
+
+rule "What kind of weird? - Hitler time traveling weird - Look Who's Back"
+    when
+    Answer(question == "What kind of weird?" && answer == "Hitler time traveling weird")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Look Who's Back");
+end
+
+
+rule "What kind of comedy then? - Political - Bulworth"
+    when
+    Answer(question == "What kind of comedy then?" && answer == "Political")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Bulworth");
+end
+
+
+rule "What kind of comedy then? - Horror - What kind of horror comedy?"
+    when
+    Answer(question == "What kind of comedy then?" && answer == "Horror")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Just plain stupid");
+    options.add("Funniest fucking thing you'll ever see. Shitty 80's horror at its peak");
+    options.add("Just kinda weird");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind of horror comedy?", options);
+    insert (answer);
+end
+
+rule "What kind of horror comedy? - Just plain stupid - Tucker and Dave vs. Evil"
+    when
+    Answer(question == "What kind of horror comedy?" && answer == "Just plain stupid")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Tucker and Dave vs. Evil");
+end
+
+
+rule "What kind of horror comedy? - Funniest fucking thing you'll ever see. Shitty 80's horror at its peak - ReAnimator"
+    when
+    Answer(question == "What kind of horror comedy?" && answer == "Funniest fucking thing you'll ever see. Shitty 80's horror at its peak")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "ReAnimator");
+end
+
+
+rule "What kind of horror comedy? - Just kinda weird - Human Centipede"
+    when
+    Answer(question == "What kind of horror comedy?" && answer == "Just kinda weird")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Human Centipede");
+end
+
+
+rule "What kind of comedy? - Animated - What kind of animated comedy?"
+    when
+    Answer(question == "What kind of comedy?" && answer == "Animated")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Adorable Underrated film?");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind of animated comedy?", options);
+    insert (answer);
+end
+
+rule "What kind of animated comedy? - Adorable Underrated film? - Choose your comedy animation"
+    when
+    Answer(question == "What kind of animated comedy?" && answer == "Adorable Underrated film?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("No, let's watch some semi");
+    options.add("Yes please");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose your comedy animation", options);
+    insert (answer);
+end
+
+rule "Choose your comedy animation - No, let's watch some semi - funny trash"
+    when
+    Answer(question == "Choose your comedy animation" && answer == "No, let's watch some semi")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "funny trash");
+end
+
+
+rule "Choose your comedy animation - Yes please - Home"
+    when
+    Answer(question == "Choose your comedy animation" && answer == "Yes please")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Home");
+end
+
+
+rule "What genre? - Drama - What kind of drama?"
+    when
+    Answer(question == "What genre?" && answer == "Drama")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Crime");
+    options.add("Cute");
+    options.add("Horror");
+    options.add("Neo");
+    options.add("How about some political biopics?");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind of drama?", options);
+    insert (answer);
+end
+
+rule "What kind of drama? - Crime - What kind of crime drama?"
+    when
+    Answer(question == "What kind of drama?" && answer == "Crime")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("A healthy dose of action?");
+    options.add("Mystery");
+    options.add("Something a wee bit different");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind of crime drama?", options);
+    insert (answer);
+end
+
+rule "What kind of crime drama? - A healthy dose of action? - What kind of crime action drama?"
+    when
+    Answer(question == "What kind of crime drama?" && answer == "A healthy dose of action?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Man locked in a mysterious room for many year suddenly freed");
+    options.add("Coen brother's movie about about a hitman chases after bystander after drug deal gone bad");
+    options.add("John Woo directed movie where hitman takes job to help woman he accidentaly injured");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind of crime action drama?", options);
+    insert (answer);
+end
+
+rule "What kind of crime action drama? - Man locked in a mysterious room for many year suddenly freed - Oldboy"
+    when
+    Answer(question == "What kind of crime action drama?" && answer == "Man locked in a mysterious room for many year suddenly freed")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Oldboy");
+end
+
+
+rule "What kind of crime action drama? - Coen brother's movie about about a hitman chases after bystander after drug deal gone bad - No Country for Old Men"
+    when
+    Answer(question == "What kind of crime action drama?" && answer == "Coen brother's movie about about a hitman chases after bystander after drug deal gone bad")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "No Country for Old Men");
+end
+
+
+rule "What kind of crime action drama? - John Woo directed movie where hitman takes job to help woman he accidentaly injured - The Killer"
+    when
+    Answer(question == "What kind of crime action drama?" && answer == "John Woo directed movie where hitman takes job to help woman he accidentaly injured")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Killer");
+end
+
+
+rule "What kind of crime drama? - Mystery - What is so mysterious?"
+    when
+    Answer(question == "What kind of crime drama?" && answer == "Mystery")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Journalist works with hacker to find a wealthy girl");
+    options.add("Father hunts daughters' killer, while the daughter's ghost watches");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What is so mysterious?", options);
+    insert (answer);
+end
+
+rule "What is so mysterious? - Journalist works with hacker to find a wealthy girl - The Girl with the Dragon Tatoo"
+    when
+    Answer(question == "What is so mysterious?" && answer == "Journalist works with hacker to find a wealthy girl")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Girl with the Dragon Tatoo");
+end
+
+
+rule "What is so mysterious? - Father hunts daughters' killer, while the daughter's ghost watches - The Lovely Bones"
+    when
+    Answer(question == "What is so mysterious?" && answer == "Father hunts daughters' killer, while the daughter's ghost watches")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Lovely Bones");
+end
+
+
+rule "What kind of crime drama? - Something a wee bit different - In what way?"
+    when
+    Answer(question == "What kind of crime drama?" && answer == "Something a wee bit different")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Man videotapes and sells footage of crime scenes");
+    options.add("Journalist investigates pedophilia in the catholic church");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "In what way?", options);
+    insert (answer);
+end
+
+rule "In what way? - Man videotapes and sells footage of crime scenes - Nightcrawler"
+    when
+    Answer(question == "In what way?" && answer == "Man videotapes and sells footage of crime scenes")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Nightcrawler");
+end
+
+
+rule "In what way? - Journalist investigates pedophilia in the catholic church - Spotlight"
+    when
+    Answer(question == "In what way?" && answer == "Journalist investigates pedophilia in the catholic church")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Spotlight");
+end
+
+
+rule "What kind of drama? - Cute - What is so cute?"
+    when
+    Answer(question == "What kind of drama?" && answer == "Cute")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Teenager starts seeing his dead brother");
+    options.add("French movie about a girl's first lesbian relationship");
+    options.add("Wes Anders movie about two kids running away from home");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What is so cute?", options);
+    insert (answer);
+end
+
+rule "What is so cute? - Teenager starts seeing his dead brother - Charlie St. Cloud"
+    when
+    Answer(question == "What is so cute?" && answer == "Teenager starts seeing his dead brother")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Charlie St. Cloud");
+end
+
+
+rule "What is so cute? - French movie about a girl's first lesbian relationship - Blue is the Warmest Color"
+    when
+    Answer(question == "What is so cute?" && answer == "French movie about a girl's first lesbian relationship")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Blue is the Warmest Color");
+end
+
+
+rule "What is so cute? - Wes Anders movie about two kids running away from home - Moonrise Kingdom"
+    when
+    Answer(question == "What is so cute?" && answer == "Wes Anders movie about two kids running away from home")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Moonrise Kingdom");
+end
+
+
+rule "What kind of drama? - Horror - What subgenre of horror?"
+    when
+    Answer(question == "What kind of drama?" && answer == "Horror")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Contemporary Horror");
+    options.add("Classic Horror");
+    options.add("Cult Horror");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What subgenre of horror?", options);
+    insert (answer);
+end
+
+rule "What subgenre of horror? - Contemporary Horror - Choose a contemporary storyline"
+    when
+    Answer(question == "What subgenre of horror?" && answer == "Contemporary Horror")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("A spooky children's character comes live and terrorizes mother");
+    options.add("A deaf");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose a contemporary storyline", options);
+    insert (answer);
+end
+
+rule "Choose a contemporary storyline - A spooky children's character comes live and terrorizes mother - The Babadook"
+    when
+    Answer(question == "Choose a contemporary storyline" && answer == "A spooky children's character comes live and terrorizes mother")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Babadook");
+end
+
+
+rule "Choose a contemporary storyline - A deaf - mute is trapped in her house by a masked killer"
+    when
+    Answer(question == "Choose a contemporary storyline" && answer == "A deaf")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "mute is trapped in her house by a masked killer");
+end
+
+
+rule "What subgenre of horror? - Classic Horror - Choose a classic horror story"
+    when
+    Answer(question == "What subgenre of horror?" && answer == "Classic Horror")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("A couple stumbles upon a strange town with no adults");
+    options.add("Some scientists hunt for the shark");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose a classic horror story", options);
+    insert (answer);
+end
+
+rule "Choose a classic horror story - A couple stumbles upon a strange town with no adults - Children of the Corn"
+    when
+    Answer(question == "Choose a classic horror story" && answer == "A couple stumbles upon a strange town with no adults")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Children of the Corn");
+end
+
+
+rule "Choose a classic horror story - Some scientists hunt for the shark - Jaws"
+    when
+    Answer(question == "Choose a classic horror story" && answer == "Some scientists hunt for the shark")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Jaws");
+end
+
+
+rule "What subgenre of horror? - Cult Horror - Choose your type of cult horror"
+    when
+    Answer(question == "What subgenre of horror?" && answer == "Cult Horror")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("A haunted house tortures its family");
+    options.add("xtremely gory movie about sadists from another dimension");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose your type of cult horror", options);
+    insert (answer);
+end
+
+rule "Choose your type of cult horror - A haunted house tortures its family - The Amityville Horror"
+    when
+    Answer(question == "Choose your type of cult horror" && answer == "A haunted house tortures its family")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Amityville Horror");
+end
+
+
+rule "Choose your type of cult horror - xtremely gory movie about sadists from another dimension - Hellraiser"
+    when
+    Answer(question == "Choose your type of cult horror" && answer == "xtremely gory movie about sadists from another dimension")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Hellraiser");
+end
+
+
+rule "What kind of drama? - Neo - Noir"
+    when
+    Answer(question == "What kind of drama?" && answer == "Neo")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("One of the best of all time: K");
+    options.add("Iran's first vampire, gangster, western, horror movie?");
+    options.add("Christopher Nolan directed movie about stalkers");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Noir", options);
+    insert (answer);
+end
+
+rule "Noir - One of the best of all time: K - Spac relays his story of a robbery gone south."
+    when
+    Answer(question == "Noir" && answer == "One of the best of all time: K")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Spac relays his story of a robbery gone south.");
+end
+
+
+rule "Noir - Iran's first vampire, gangster, western, horror movie? - A Girl Walks Home Alone at Night"
+    when
+    Answer(question == "Noir" && answer == "Iran's first vampire, gangster, western, horror movie?")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "A Girl Walks Home Alone at Night");
+end
+
+
+rule "Noir - Christopher Nolan directed movie about stalkers - Following"
+    when
+    Answer(question == "Noir" && answer == "Christopher Nolan directed movie about stalkers")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Following");
+end
+
+
+rule "What kind of drama? - How about some political biopics? - Of what kind?"
+    when
+    Answer(question == "What kind of drama?" && answer == "How about some political biopics?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Cecil Gaines (fictionalized version of Eugene Allen) is a Whitehouse butler for 8 presidents");
+    options.add("Jimmy Hoffa, union leader and mob boss who died under mysterious circumstances");
+    options.add("WW2 General Patton. \"Rommel you magnificent bastard! I read your book!\"");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Of what kind?", options);
+    insert (answer);
+end
+
+rule "Of what kind? - Cecil Gaines (fictionalized version of Eugene Allen) is a Whitehouse butler for 8 presidents - The Butler"
+    when
+    Answer(question == "Of what kind?" && answer == "Cecil Gaines (fictionalized version of Eugene Allen) is a Whitehouse butler for 8 presidents")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Butler");
+end
+
+
+rule "Of what kind? - Jimmy Hoffa, union leader and mob boss who died under mysterious circumstances - Hoffa"
+    when
+    Answer(question == "Of what kind?" && answer == "Jimmy Hoffa, union leader and mob boss who died under mysterious circumstances")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Hoffa");
+end
+
+
+rule "Of what kind? - WW2 General Patton. \"Rommel you magnificent bastard! I read your book!\" - Patton"
+    when
+    Answer(question == "Of what kind?" && answer == "WW2 General Patton. \"Rommel you magnificent bastard! I read your book!\"")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Patton");
+end
+
+
+rule "What genre? - Documentaries - Choose documented topic."
+    when
+    Answer(question == "What genre?" && answer == "Documentaries")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("An inside look into the amateur porn industry");
+    options.add("A story of Drug Dealers in Florida in the 80s");
+    options.add("A study of German Expressionist cinema and facist");
+    options.add("Noam Chomsky looks at wealth inequality in America");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose documented topic.", options);
+    insert (answer);
+end
+
+rule "Choose documented topic. - An inside look into the amateur porn industry - Hot Girls Wanted"
+    when
+    Answer(question == "Choose documented topic." && answer == "An inside look into the amateur porn industry")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Hot Girls Wanted");
+end
+
+
+rule "Choose documented topic. - A story of Drug Dealers in Florida in the 80s - Cocaine Cowboys"
+    when
+    Answer(question == "Choose documented topic." && answer == "A story of Drug Dealers in Florida in the 80s")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Cocaine Cowboys");
+end
+
+
+rule "Choose documented topic. - A study of German Expressionist cinema and facist - From Caligari to Hitler"
+    when
+    Answer(question == "Choose documented topic." && answer == "A study of German Expressionist cinema and facist")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "From Caligari to Hitler");
+end
+
+
+rule "Choose documented topic. - Noam Chomsky looks at wealth inequality in America - Requiem for the American Dream"
+    when
+    Answer(question == "Choose documented topic." && answer == "Noam Chomsky looks at wealth inequality in America")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Requiem for the American Dream");
+end
+
+
+rule "What genre? - Timeless Classics - choose a classic movie."
+    when
+    Answer(question == "What genre?" && answer == "Timeless Classics")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Scientists create a cannon to sent them to the moon");
+    options.add("A lawyer defends an innocent black man in the 1930's south");
+    options.add("A German Expressionist film where an upper class man leads the lower class in revolt");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "choose a classic movie.", options);
+    insert (answer);
+end
+
+rule "choose a classic movie. - Scientists create a cannon to sent them to the moon - A Trip to the Moon"
+    when
+    Answer(question == "choose a classic movie." && answer == "Scientists create a cannon to sent them to the moon")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "A Trip to the Moon");
+end
+
+
+rule "choose a classic movie. - A lawyer defends an innocent black man in the 1930's south - To Kill a Mockingbird"
+    when
+    Answer(question == "choose a classic movie." && answer == "A lawyer defends an innocent black man in the 1930's south")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "To Kill a Mockingbird");
+end
+
+
+rule "choose a classic movie. - A German Expressionist film where an upper class man leads the lower class in revolt - Metropolis"
+    when
+    Answer(question == "choose a classic movie." && answer == "A German Expressionist film where an upper class man leads the lower class in revolt")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Metropolis");
+end
+
+
+rule "Would you Like to watch a movie or a Television show? - Television - What kind?"
+    when
+    Answer(question == "Would you Like to watch a movie or a Television show?" && answer == "Television")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Action");
+    options.add("Comedy");
+    options.add("Drama");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "What kind?", options);
+    insert (answer);
+end
+
+rule "What kind? - Action - With real actors?"
+    when
+    Answer(question == "What kind?" && answer == "Action")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Live action");
+    options.add("Anime");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "With real actors?", options);
+    insert (answer);
+end
+
+rule "With real actors? - Live action - Do you like comics?"
+    when
+    Answer(question == "With real actors?" && answer == "Live action")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("DC?");
+    options.add("Marvel?");
+    options.add("SciFi and Fantasy, then.");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Do you like comics?", options);
+    insert (answer);
+end
+
+rule "Do you like comics? - DC? - Choose a DC superhero."
+    when
+    Answer(question == "Do you like comics?" && answer == "DC?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("If Batman fought with bows");
+    options.add("Guy goes fast");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose a DC superhero.", options);
+    insert (answer);
+end
+
+rule "Choose a DC superhero. - If Batman fought with bows - Arrow"
+    when
+    Answer(question == "Choose a DC superhero." && answer == "If Batman fought with bows")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Arrow");
+end
+
+
+rule "Choose a DC superhero. - Guy goes fast - The Flash"
+    when
+    Answer(question == "Choose a DC superhero." && answer == "Guy goes fast")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Flash");
+end
+
+
+rule "Do you like comics? - Marvel? - Choose a Marvel superhero."
+    when
+    Answer(question == "Do you like comics?" && answer == "Marvel?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Super Strong detective with traumatic past");
+    options.add("Blind Lawyer fights crime with his super senses");
+    options.add("Ex");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose a Marvel superhero.", options);
+    insert (answer);
+end
+
+rule "Choose a Marvel superhero. - Super Strong detective with traumatic past - Jessica Jones"
+    when
+    Answer(question == "Choose a Marvel superhero." && answer == "Super Strong detective with traumatic past")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Jessica Jones");
+end
+
+
+rule "Choose a Marvel superhero. - Blind Lawyer fights crime with his super senses - Daredevil"
+    when
+    Answer(question == "Choose a Marvel superhero." && answer == "Blind Lawyer fights crime with his super senses")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Daredevil");
+end
+
+
+rule "Choose a Marvel superhero. - Ex - con cleans up Harlem from local ganglords"
+    when
+    Answer(question == "Choose a Marvel superhero." && answer == "Ex")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "con cleans up Harlem from local ganglords");
+end
+
+
+rule "Do you like comics? - SciFi and Fantasy, then. - Which of the two?"
+    when
+    Answer(question == "Do you like comics?" && answer == "SciFi and Fantasy, then.")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("SciFi");
+    options.add("Fantasy");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Which of the two?", options);
+    insert (answer);
+end
+
+rule "Which of the two? - SciFi - choose a SciFi storyline"
+    when
+    Answer(question == "Which of the two?" && answer == "SciFi")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("People fight crime with help of of pervasive surveilence");
+    options.add("Superhero");
+    options.add("Nuclear Apocalypse?");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "choose a SciFi storyline", options);
+    insert (answer);
+end
+
+rule "choose a SciFi storyline - People fight crime with help of of pervasive surveilence - Person of Interest"
+    when
+    Answer(question == "choose a SciFi storyline" && answer == "People fight crime with help of of pervasive surveilence")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Person of Interest");
+end
+
+
+rule "choose a SciFi storyline - Superhero - esque mutants fight crime"
+    when
+    Answer(question == "choose a SciFi storyline" && answer == "Superhero")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "esque mutants fight crime");
+end
+
+
+rule "choose a SciFi storyline - Nuclear Apocalypse? - Choose your timeline of events"
+    when
+    Answer(question == "choose a SciFi storyline" && answer == "Nuclear Apocalypse?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Surviving right after nuclear apocalypse");
+    options.add("Surviving generation after nuclear apocalypse");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose your timeline of events", options);
+    insert (answer);
+end
+
+rule "Choose your timeline of events - Surviving right after nuclear apocalypse - Jericho"
+    when
+    Answer(question == "Choose your timeline of events" && answer == "Surviving right after nuclear apocalypse")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Jericho");
+end
+
+
+rule "Choose your timeline of events - Surviving generation after nuclear apocalypse - The 100"
+    when
+    Answer(question == "Choose your timeline of events" && answer == "Surviving generation after nuclear apocalypse")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The 100");
+end
+
+
+rule "Which of the two? - Fantasy - Choose a fantasy storyline"
+    when
+    Answer(question == "Which of the two?" && answer == "Fantasy")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Two brothers hunt monsters and demons");
+    options.add("Musical Satire of Fairy tales");
+    options.add("A retelling of Arthurian legend");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose a fantasy storyline", options);
+    insert (answer);
+end
+
+rule "Choose a fantasy storyline - Two brothers hunt monsters and demons - Supernatural"
+    when
+    Answer(question == "Choose a fantasy storyline" && answer == "Two brothers hunt monsters and demons")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Supernatural");
+end
+
+
+rule "Choose a fantasy storyline - Musical Satire of Fairy tales - Galavant"
+    when
+    Answer(question == "Choose a fantasy storyline" && answer == "Musical Satire of Fairy tales")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Galavant");
+end
+
+
+rule "Choose a fantasy storyline - A retelling of Arthurian legend - Merlin"
+    when
+    Answer(question == "Choose a fantasy storyline" && answer == "A retelling of Arthurian legend")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Merlin");
+end
+
+
+rule "With real actors? - Anime - Choose the plot of your anime."
+    when
+    Answer(question == "With real actors?" && answer == "Anime")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("A highschooler finds a book that kills anyone whose name is in it");
+    options.add("Americanime about girls going to school to fight monsters");
+    options.add("Japanese schoolgirl gets sent to japan with a demon");
+    options.add("The son of Satan decides to fight demons as an exorcist");
+    options.add("A country kid moves to Tokyo and becomes involved with the local street politics");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose the plot of your anime.", options);
+    insert (answer);
+end
+
+rule "Choose the plot of your anime. - A highschooler finds a book that kills anyone whose name is in it - Death Note"
+    when
+    Answer(question == "Choose the plot of your anime." && answer == "A highschooler finds a book that kills anyone whose name is in it")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Death Note");
+end
+
+
+rule "Choose the plot of your anime. - Americanime about girls going to school to fight monsters - RWBY"
+    when
+    Answer(question == "Choose the plot of your anime." && answer == "Americanime about girls going to school to fight monsters")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "RWBY");
+end
+
+
+rule "Choose the plot of your anime. - Japanese schoolgirl gets sent to japan with a demon - Inuyasha"
+    when
+    Answer(question == "Choose the plot of your anime." && answer == "Japanese schoolgirl gets sent to japan with a demon")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Inuyasha");
+end
+
+
+rule "Choose the plot of your anime. - The son of Satan decides to fight demons as an exorcist - Blue Exorcist"
+    when
+    Answer(question == "Choose the plot of your anime." && answer == "The son of Satan decides to fight demons as an exorcist")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Blue Exorcist");
+end
+
+
+rule "Choose the plot of your anime. - A country kid moves to Tokyo and becomes involved with the local street politics - Durarara"
+    when
+    Answer(question == "Choose the plot of your anime." && answer == "A country kid moves to Tokyo and becomes involved with the local street politics")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Durarara");
+end
+
+
+rule "What kind? - Comedy - Comedy with real people?"
+    when
+    Answer(question == "What kind?" && answer == "Comedy")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Live Action");
+    options.add("Animated");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Comedy with real people?", options);
+    insert (answer);
+end
+
+rule "Comedy with real people? - Live Action - Workplace comedy?"
+    when
+    Answer(question == "Comedy with real people?" && answer == "Live Action")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Only if it's British");
+    options.add("Only if it's American");
+    options.add("Work? I watch TV to forget about work.");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Workplace comedy?", options);
+    insert (answer);
+end
+
+rule "Workplace comedy? - Only if it's British - Choose a British comedy."
+    when
+    Answer(question == "Workplace comedy?" && answer == "Only if it's British")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Socially Awkward IT specialists");
+    options.add("Relatable story of dysfunctional workplaces");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose a British comedy.", options);
+    insert (answer);
+end
+
+rule "Choose a British comedy. - Socially Awkward IT specialists - The IT Crowd"
+    when
+    Answer(question == "Choose a British comedy." && answer == "Socially Awkward IT specialists")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The IT Crowd");
+end
+
+
+rule "Choose a British comedy. - Relatable story of dysfunctional workplaces - The Office (UK)"
+    when
+    Answer(question == "Choose a British comedy." && answer == "Relatable story of dysfunctional workplaces")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Office (UK)");
+end
+
+
+rule "Workplace comedy? - Only if it's American - Choose an American comedy."
+    when
+    Answer(question == "Workplace comedy?" && answer == "Only if it's American")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("elatable story of dysfunctional workplaces");
+    options.add("What about local government?");
+    options.add("Pub owners get caught up in various antics");
+    options.add("Two best friends work at a hospital");
+    options.add("How about one on a comedy writing team?");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose an American comedy.", options);
+    insert (answer);
+end
+
+rule "Choose an American comedy. - elatable story of dysfunctional workplaces - The Office (US)"
+    when
+    Answer(question == "Choose an American comedy." && answer == "elatable story of dysfunctional workplaces")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Office (US)");
+end
+
+
+rule "Choose an American comedy. - What about local government? - Parks and Rec"
+    when
+    Answer(question == "Choose an American comedy." && answer == "What about local government?")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Parks and Rec");
+end
+
+
+rule "Choose an American comedy. - Pub owners get caught up in various antics - It's Always Sunny in Philaedelphia"
+    when
+    Answer(question == "Choose an American comedy." && answer == "Pub owners get caught up in various antics")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "It's Always Sunny in Philaedelphia");
+end
+
+
+rule "Choose an American comedy. - Two best friends work at a hospital - Scrubs"
+    when
+    Answer(question == "Choose an American comedy." && answer == "Two best friends work at a hospital")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Scrubs");
+end
+
+
+rule "Choose an American comedy. - How about one on a comedy writing team? - 30 Rock"
+    when
+    Answer(question == "Choose an American comedy." && answer == "How about one on a comedy writing team?")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "30 Rock");
+end
+
+
+rule "Workplace comedy? - Work? I watch TV to forget about work. - How about Family based comedy"
+    when
+    Answer(question == "Workplace comedy?" && answer == "Work? I watch TV to forget about work.")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("I hate my family too. Do you have anything about just friends hanging out?");
+    options.add("A rich family deals with their wealth falling apart");
+    options.add("A suburban middle child growing up");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "How about Family based comedy", options);
+    insert (answer);
+end
+
+rule "How about Family based comedy - I hate my family too. Do you have anything about just friends hanging out? - Choose a story that doesn't involve family."
+    when
+    Answer(question == "How about Family based comedy" && answer == "I hate my family too. Do you have anything about just friends hanging out?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("70s stoners");
+    options.add("A man tells his children about his various youthful exploits");
+    options.add("An ex");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose a story that doesn't involve family.", options);
+    insert (answer);
+end
+
+rule "Choose a story that doesn't involve family." - 70s stoners - That 70s Show"
+    when
+    Answer(question == "Choose a story that doesn't involve family." && answer == "70s stoners")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "That 70s Show");
+end
+
+
+rule "Choose a story that doesn't involve family. - A man tells his children about his various youthful exploits - How I Met Your Mother"
+    when
+    Answer(question == "Choose a story that doesn't involve family." && answer == "A man tells his children about his various youthful exploits")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "How I Met Your Mother");
+end
+
+
+rule "Choose a story that doesn't involve family. - An ex-cult member goes to New York and tries to make it"
+    when
+    Answer(question == "Choose a story that doesn't involve family." && answer == "An ex")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "cult member goes to New York and tries to make it");
+end
+
+
+rule "How about Family based comedy - A rich family deals with their wealth falling apart - Arrested Development"
+    when
+    Answer(question == "How about Family based comedy" && answer == "A rich family deals with their wealth falling apart")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Arrested Development");
+end
+
+
+rule "How about Family based comedy - A suburban middle child growing up - Malcolm in the Middle"
+    when
+    Answer(question == "How about Family based comedy" && answer == "A suburban middle child growing up")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Malcolm in the Middle");
+end
+
+
+rule "Comedy with real people? - Animated - Choose target audience."
+    when
+    Answer(question == "Comedy with real people?" && answer == "Animated")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Children");
+    options.add("Adults");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose target audience.", options);
+    insert (answer);
+end
+
+rule "Choose target audience. - Children - Choose a children animation"
+    when
+    Answer(question == "Choose target audience." && answer == "Children")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Cleverly written show featuring two young geniuses building contraptions");
+    options.add("Chaotic toons do shenanigans");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose a children animation", options);
+    insert (answer);
+end
+
+rule "Choose a children animation - Cleverly written show featuring two young geniuses building contraptions - Phineas and Ferb"
+    when
+    Answer(question == "Choose a children animation" && answer == "Cleverly written show featuring two young geniuses building contraptions")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Phineas and Ferb");
+end
+
+
+rule "Choose a children animation - Chaotic toons do shenanigans - Pokemon"
+    when
+    Answer(question == "Choose a children animation" && answer == "Chaotic toons do shenanigans")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Pokemon");
+end
+
+
+rule "Choose target audience. - Adults - Choose an adult animation."
+    when
+    Answer(question == "Choose target audience." && answer == "Adults")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Old School Halo machinima");
+    options.add("Parody of the super");
+    options.add("Very unlucky family tries to keep their burger joint in shape");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose an adult animation.", options);
+    insert (answer);
+end
+
+rule "Choose an adult animation. - Old School Halo machinima - Red vs. Blue"
+    when
+    Answer(question == "Choose an adult animation." && answer == "Old School Halo machinima")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Red vs. Blue");
+end
+
+
+rule "Choose an adult animation. - Parody of the super - spy genre"
+    when
+    Answer(question == "Choose an adult animation." && answer == "Parody of the super")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "spy genre");
+end
+
+
+rule "Choose an adult animation. - Very unlucky family tries to keep their burger joint in shape - Bob's Burgers"
+    when
+    Answer(question == "Choose an adult animation." && answer == "Very unlucky family tries to keep their burger joint in shape")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Bob's Burgers");
+end
+
+
+rule "What kind? - Drama - How about some crime?"
+    when
+    Answer(question == "What kind?" && answer == "Drama")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Good Guys");
+    options.add("Bad guys");
+    options.add("What about mindfuckery?");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "How about some crime?", options);
+    insert (answer);
+end
+
+rule "How about some crime? - Good Guys - Choose your good guys."
+    when
+    Answer(question == "How about some crime?" && answer == "Good Guys")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("FBI detectives tracking serial killers");
+    options.add("Modern British Sherlock Holmes");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose your good guys.", options);
+    insert (answer);
+end
+
+rule "Choose your good guys. - FBI detectives tracking serial killers - Criminal Minds"
+    when
+    Answer(question == "Choose your good guys." && answer == "FBI detectives tracking serial killers")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Criminal Minds");
+end
+
+
+rule "Choose your good guys. - Modern British Sherlock Holmes - Sherlock"
+    when
+    Answer(question == "Choose your good guys." && answer == "Modern British Sherlock Holmes")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Sherlock");
+end
+
+
+rule "How about some crime? - Bad guys - Choose your bad guys."
+    when
+    Answer(question == "How about some crime?" && answer == "Bad guys")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Cartel");
+    options.add("Biker Gang");
+    options.add("Meth Cooks");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose your bad guys.", options);
+    insert (answer);
+end
+
+rule "Choose your bad guys. - Cartel - Narcos"
+    when
+    Answer(question == "Choose your bad guys." && answer == "Cartel")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Narcos");
+end
+
+
+rule "Choose your bad guys. - Biker Gang - Sons of Anarchy"
+    when
+    Answer(question == "Choose your bad guys." && answer == "Biker Gang")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Sons of Anarchy");
+end
+
+
+rule "Choose your bad guys. - Meth Cooks - Breaking Bad"
+    when
+    Answer(question == "Choose your bad guys." && answer == "Meth Cooks")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Breaking Bad");
+end
+
+
+rule "How about some crime? - What about mindfuckery? - Choose a type of mindfuckery."
+    when
+    Answer(question == "How about some crime?" && answer == "What about mindfuckery?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Classic SciFi serial featuring short, ponderous stories");
+    options.add("Modern Twilight Zone with an emphasis on technology");
+    options.add("Surreal 90s mystery by David Lynch");
+    options.add("None of that seemed good? Well you can't go wrong with these two");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose a type of mindfuckery.", options);
+    insert (answer);
+end
+
+rule "Choose a type of mindfuckery. - Classic SciFi serial featuring short, ponderous stories - The Twilight Zone"
+    when
+    Answer(question == "Choose a type of mindfuckery." && answer == "Classic SciFi serial featuring short, ponderous stories")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "The Twilight Zone");
+end
+
+
+rule "Choose a type of mindfuckery. - Modern Twilight Zone with an emphasis on technology - Black Mirror"
+    when
+    Answer(question == "Choose a type of mindfuckery." && answer == "Modern Twilight Zone with an emphasis on technology")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Black Mirror");
+end
+
+
+rule "Choose a type of mindfuckery. - Surreal 90s mystery by David Lynch - Twin Peaks"
+    when
+    Answer(question == "Choose a type of mindfuckery." && answer == "Surreal 90s mystery by David Lynch")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Twin Peaks");
+end
+
+
+rule "Choose a type of mindfuckery. - None of that seemed good? Well you can't go wrong with these two - Choose one of the fan favorites"
+    when
+    Answer(question == "Choose a type of mindfuckery." && answer == "None of that seemed good? Well you can't go wrong with these two")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Kids lose their friend to an unearthy creature and track him down");
+    options.add("Backstabbing senator claws his way through politics");
+    Answer answer = ask(frame, kcontext.getKieRuntime(), "Choose one of the fan favorites", options);
+    insert (answer);
+end
+
+rule "Choose one of the fan favorites - Kids lose their friend to an unearthy creature and track him down - Stranger Things"
+    when
+    Answer(question == "Choose one of the fan favorites" && answer == "Kids lose their friend to an unearthy creature and track him down")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "Stranger Things");
+end
+
+
+rule "Choose one of the fan favorites - Backstabbing senator claws his way through politics - House of Cards"
+    when
+    Answer(question == "Choose one of the fan favorites" && answer == "Backstabbing senator claws his way through politics")
+    then
+    recommend(frame, kcontext.getKieRuntime(), "House of Cards");
+end
+
+function void recommend(JFrame frame, KieRuntime krt, String recommended) {
+    final JPanel panel = new JPanel();
+    String text = recommended;
+    panel.add(new JLabel(text));
+    JOptionPane.showMessageDialog(frame, panel);
+}
+
+function Answer ask(JFrame frame, KieRuntime krt, String questionString, ArrayList answers) {
+
+    class Listener implements ItemListener {
+        private Answer answer;
+        private String chosen;
+        public Listener(Answer ans, String cho) {
+            this.answer = ans;
+            this.chosen = cho;
+        }
+
+        @Override
+        public void itemStateChanged(ItemEvent event) {
+            if (event.getStateChange() == ItemEvent.SELECTED) {
+                answer.setAnswer(chosen);
+            }
+        }
+    }
+    Answer answer = new Answer(questionString, (String) answers.get(0));
+
+    final JPanel panel = new JPanel(new GridLayout(0, 1));
+    panel.add(new JLabel(questionString));
+
+    ArrayList < JRadioButton > listOfButtons = new ArrayList < > ();
+
+    for (int i = 0; i < answers.size(); i++) {
+        String text = (String) answers.get(i);
+        JRadioButton instance = new JRadioButton(text);
+        Listener instanceListener = new Listener(answer, text);
+        instance.addItemListener(instanceListener);
+        listOfButtons.add(instance);
+    }
+
+    listOfButtons.get(0).setSelected(true);
+    answer.setAnswer((String) answers.get(0));
+
+    ButtonGroup group = new ButtonGroup();
+    for (int i = 0; i < listOfButtons.size(); i++) {
+        group.add(listOfButtons.get(i));
+        panel.add(listOfButtons.get(i));
+    }
+    Object[] options = {
+        "Proceed"
+    };
+    if (JOptionPane.showConfirmDialog(frame, panel, "Question", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE) < 0) {
+        answer.setAnswer("Close program");
+    }
+
+    return answer;
+}

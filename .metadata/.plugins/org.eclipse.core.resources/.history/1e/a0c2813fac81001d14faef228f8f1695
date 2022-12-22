@@ -1,0 +1,1743 @@
+package com.sample
+import javax.swing.JOptionPane
+import javax.swing.JFrame
+import org.kie.api.runtime.KieRuntime
+import javax.swing.JRadioButton
+import javax.swing.JPanel
+global JFrame frame
+global javax.swing.JTextArea textArea
+import java.util.ArrayList
+import java.util.List
+import java.util.Arrays;
+import java.util.ArrayList
+import javax.swing.JLabel;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import com.sample.Odpowiedz;
+rule "Would you Like to watch a movie or a Television show?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Movie");
+    warianty.add("Television");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Would you Like to watch a movie or a Television show?", warianty);
+    insert (odpowiedz);
+end
+
+rule "Would you Like to watch a movie or a Television show? - Movie - undefined"
+    when
+    Odpowiedz(pytanie == "Would you Like to watch a movie or a Television show?" && odpowiedz == "Movie")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Action");
+    warianty.add("Comedy");
+    warianty.add("Drama");
+    warianty.add("Documentaries");
+    warianty.add("Timeless classics");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Action"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Live Action");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Action", warianty);
+    insert (odpowiedz);
+end
+
+rule "Action - Live Action - undefined"
+    when
+    Odpowiedz(pytanie == "Action" && odpowiedz == "Live Action")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Martial Arts?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Martial Arts?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Nah");
+    warianty.add("Fuck Yeah");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Martial Arts?", warianty);
+    insert (odpowiedz);
+end
+
+rule "Martial Arts? - Nah - undefined"
+    when
+    Odpowiedz(pytanie == "Martial Arts?" && odpowiedz == "Nah")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Serious");
+    warianty.add("Goofy");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Serious"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Comic Book based?");
+    warianty.add("SciFi");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Serious", warianty);
+    insert (odpowiedz);
+end
+
+rule "Serious - Comic Book based? - undefined"
+    when
+    Odpowiedz(pytanie == "Serious" && odpowiedz == "Comic Book based?")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Film Noir");
+    warianty.add("Ron Pearlman in a shit ton of makeup");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Film Noir"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Film Noir", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Ron Pearlman in a shit ton of makeup"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Ron Pearlman in a shit ton of makeup", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Serious - SciFi - undefined"
+    when
+    Odpowiedz(pytanie == "Serious" && odpowiedz == "SciFi")
+    then
+    polec(frame, kcontext.getKieRuntime(), "undefined");
+end
+
+
+rule "Goofy"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("British");
+    warianty.add("Not British");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Goofy", warianty);
+    insert (odpowiedz);
+end
+
+rule "Goofy - British - Hot Fuzz"
+    when
+    Odpowiedz(pytanie == "Goofy" && odpowiedz == "British")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Hot Fuzz");
+end
+
+
+rule "Goofy - Not British - undefined"
+    when
+    Odpowiedz(pytanie == "Goofy" && odpowiedz == "Not British")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Homage to the 80s?");
+    warianty.add("Actually from the 80s");
+    warianty.add("Tarantino directed movie about people killing Nazis");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Homage to the 80s?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Homage to the 80s?", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Actually from the 80s"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Actually from the 80s", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Tarantino directed movie about people killing Nazis"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Tarantino directed movie about people killing Nazis", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Martial Arts? - Fuck Yeah - undefined"
+    when
+    Odpowiedz(pytanie == "Martial Arts?" && odpowiedz == "Fuck Yeah")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Special effects out the wazoo");
+    warianty.add("Tarantino directed revenge movie");
+    warianty.add("Realistic?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Special effects out the wazoo"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Special effects out the wazoo", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Tarantino directed revenge movie"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Tarantino directed revenge movie", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Realistic?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Realistic?", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Comedy"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Coen Brothers");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Comedy", warianty);
+    insert (odpowiedz);
+end
+
+rule "Comedy - Coen Brothers - undefined"
+    when
+    Odpowiedz(pytanie == "Comedy" && odpowiedz == "Coen Brothers")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Nah");
+    warianty.add("Nah, but how about Tarantino");
+    warianty.add("Sure Thing");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Nah"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Live Action");
+    warianty.add("Animated");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Nah", warianty);
+    insert (odpowiedz);
+end
+
+rule "Nah - Live Action - undefined"
+    when
+    Odpowiedz(pytanie == "Nah" && odpowiedz == "Live Action")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("A Little bit fucked up");
+    warianty.add("Okay, a lot of bit fucked up");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "A Little bit fucked up"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("No thanks");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "A Little bit fucked up", warianty);
+    insert (odpowiedz);
+end
+
+rule "A Little bit fucked up - No thanks - undefined"
+    when
+    Odpowiedz(pytanie == "A Little bit fucked up" && odpowiedz == "No thanks")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Horror");
+    warianty.add("Political");
+    warianty.add("Weird?");
+    warianty.add("A Classic?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Horror"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Just kinda weird");
+    warianty.add("Funniest fucking thing you'll ever see. Shitty 80's horror at its peak");
+    warianty.add("Just plain stupid");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Horror", warianty);
+    insert (odpowiedz);
+end
+
+rule "Horror - Just kinda weird - Human Centipede"
+    when
+    Odpowiedz(pytanie == "Horror" && odpowiedz == "Just kinda weird")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Human Centipede");
+end
+
+
+rule "Horror - Funniest fucking thing you'll ever see. Shitty 80's horror at its peak - ReAnimator"
+    when
+    Odpowiedz(pytanie == "Horror" && odpowiedz == "Funniest fucking thing you'll ever see. Shitty 80's horror at its peak")
+    then
+    polec(frame, kcontext.getKieRuntime(), "ReAnimator");
+end
+
+
+rule "Horror - Just plain stupid - Tucker and Dave vs. Evil"
+    when
+    Odpowiedz(pytanie == "Horror" && odpowiedz == "Just plain stupid")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Tucker and Dave vs. Evil");
+end
+
+
+rule "Political"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Political", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Weird?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Paper Mache Mask weird?");
+    warianty.add("Hitler time traveling weird");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Weird?", warianty);
+    insert (odpowiedz);
+end
+
+rule "Weird? - Paper Mache Mask weird? - Frank"
+    when
+    Odpowiedz(pytanie == "Weird?" && odpowiedz == "Paper Mache Mask weird?")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Frank");
+end
+
+
+rule "Weird? - Hitler time traveling weird - Look Who's Back"
+    when
+    Odpowiedz(pytanie == "Weird?" && odpowiedz == "Hitler time traveling weird")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Look Who's Back");
+end
+
+
+rule "A Classic?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("A cult classic?");
+    warianty.add("A shitty one?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "A Classic?", warianty);
+    insert (odpowiedz);
+end
+
+rule "A Classic? - A cult classic? - undefined"
+    when
+    Odpowiedz(pytanie == "A Classic?" && odpowiedz == "A cult classic?")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Satire of Fantasy tropes");
+    warianty.add("Hilarious, Low");
+    warianty.add("70s Stoners");
+    warianty.add("A teenage takes clique drama to the next level");
+    warianty.add("Teenager playing hooky in downtown Chicago");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Satire of Fantasy tropes"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Satire of Fantasy tropes", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Hilarious, Low"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Hilarious, Low", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "70s Stoners"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "70s Stoners", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "A teenage takes clique drama to the next level"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Like... how next level?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "A teenage takes clique drama to the next level", warianty);
+    insert (odpowiedz);
+end
+
+rule "A teenage takes clique drama to the next level - Like... how next level? - undefined"
+    when
+    Odpowiedz(pytanie == "A teenage takes clique drama to the next level" && odpowiedz == "Like... how next level?")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Fucking killing people next level");
+    warianty.add("Like sending candygrams level");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Fucking killing people next level"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Fucking killing people next level", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Like sending candygrams level"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Like sending candygrams level", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Teenager playing hooky in downtown Chicago"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Teenager playing hooky in downtown Chicago", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "A Classic? - A shitty one? - undefined"
+    when
+    Odpowiedz(pytanie == "A Classic?" && odpowiedz == "A shitty one?")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("A good one. A muscial set in 50s suburbia");
+    warianty.add("A sexy shitty one?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "A good one. A muscial set in 50s suburbia"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "A good one. A muscial set in 50s suburbia", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "A sexy shitty one?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("No just plain old shitty one");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "A sexy shitty one?", warianty);
+    insert (odpowiedz);
+end
+
+rule "A sexy shitty one? - No just plain old shitty one - Animal House"
+    when
+    Odpowiedz(pytanie == "A sexy shitty one?" && odpowiedz == "No just plain old shitty one")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Animal House");
+end
+
+
+rule "Okay, a lot of bit fucked up"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Fucked up");
+    warianty.add("Nah, just a little bit. A childlike man's bike is stolen and he tracks it down");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Okay, a lot of bit fucked up", warianty);
+    insert (odpowiedz);
+end
+
+rule "Okay, a lot of bit fucked up - Fucked up - Trainspotting"
+    when
+    Odpowiedz(pytanie == "Okay, a lot of bit fucked up" && odpowiedz == "Fucked up")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Trainspotting");
+end
+
+
+rule "Okay, a lot of bit fucked up - Nah, just a little bit. A childlike man's bike is stolen and he tracks it down - Pee"
+    when
+    Odpowiedz(pytanie == "Okay, a lot of bit fucked up" && odpowiedz == "Nah, just a little bit. A childlike man's bike is stolen and he tracks it down")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Pee");
+end
+
+
+rule "Nah - Animated - undefined"
+    when
+    Odpowiedz(pytanie == "Nah" && odpowiedz == "Animated")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Adorable Underrated film?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Adorable Underrated film?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Yes please");
+    warianty.add("No, let's watch some semi");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Adorable Underrated film?", warianty);
+    insert (odpowiedz);
+end
+
+rule "Adorable Underrated film? - Yes please - Home"
+    when
+    Odpowiedz(pytanie == "Adorable Underrated film?" && odpowiedz == "Yes please")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Home");
+end
+
+
+rule "Adorable Underrated film? - No, let's watch some semi - funny trash"
+    when
+    Odpowiedz(pytanie == "Adorable Underrated film?" && odpowiedz == "No, let's watch some semi")
+    then
+    polec(frame, kcontext.getKieRuntime(), "funny trash");
+end
+
+
+rule "Nah, but how about Tarantino"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Nonlinear story about gangsters");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Nah, but how about Tarantino", warianty);
+    insert (odpowiedz);
+end
+
+rule "Nah, but how about Tarantino - Nonlinear story about gangsters - Pulp Fiction"
+    when
+    Odpowiedz(pytanie == "Nah, but how about Tarantino" && odpowiedz == "Nonlinear story about gangsters")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Pulp Fiction");
+end
+
+
+rule "Sure Thing"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("One of the greatest things to happen to this earth");
+    warianty.add("The Odyssey set in depression era south");
+    warianty.add("Minesotan banker tries to ransom his own wife. Steve Buscemi goes in a woodchipper");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Sure Thing", warianty);
+    insert (odpowiedz);
+end
+
+rule "Sure Thing - One of the greatest things to happen to this earth - Go to Amazon.com and order The Big Lebowski"
+    when
+    Odpowiedz(pytanie == "Sure Thing" && odpowiedz == "One of the greatest things to happen to this earth")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Go to Amazon.com and order The Big Lebowski");
+end
+
+
+rule "Sure Thing - The Odyssey set in depression era south - Oh Brother, Where art Thou?"
+    when
+    Odpowiedz(pytanie == "Sure Thing" && odpowiedz == "The Odyssey set in depression era south")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Oh Brother, Where art Thou?");
+end
+
+
+rule "Sure Thing - Minesotan banker tries to ransom his own wife. Steve Buscemi goes in a woodchipper - Fargo"
+    when
+    Odpowiedz(pytanie == "Sure Thing" && odpowiedz == "Minesotan banker tries to ransom his own wife. Steve Buscemi goes in a woodchipper")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Fargo");
+end
+
+
+rule "Drama"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Cute");
+    warianty.add("Crime");
+    warianty.add("Horror");
+    warianty.add("How about some political biopics?");
+    warianty.add("Neo");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Drama", warianty);
+    insert (odpowiedz);
+end
+
+rule "Drama - Cute - undefined"
+    when
+    Odpowiedz(pytanie == "Drama" && odpowiedz == "Cute")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Teenager starts seeing his dead brother");
+    warianty.add("French movie about a girl's first lesbian relationship");
+    warianty.add("Wes Anders movie about two kids running away from home");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Teenager starts seeing his dead brother"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Teenager starts seeing his dead brother", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "French movie about a girl's first lesbian relationship"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "French movie about a girl's first lesbian relationship", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Wes Anders movie about two kids running away from home"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Wes Anders movie about two kids running away from home", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Drama - Crime - undefined"
+    when
+    Odpowiedz(pytanie == "Drama" && odpowiedz == "Crime")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("A healthy dose of action");
+    warianty.add("Mystery");
+    warianty.add("Something a wee bit different");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "A healthy dose of action"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Man locked in a mysterious room for many year suddenly freed");
+    warianty.add("Coen brother's movie about about a hitman chases after bystander after drug deal gone bad");
+    warianty.add("John Woo directed movie where hitman takes job to help woman he accidentaly injured");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "A healthy dose of action", warianty);
+    insert (odpowiedz);
+end
+
+rule "A healthy dose of action - Man locked in a mysterious room for many year suddenly freed - Oldboy"
+    when
+    Odpowiedz(pytanie == "A healthy dose of action" && odpowiedz == "Man locked in a mysterious room for many year suddenly freed")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Oldboy");
+end
+
+
+rule "A healthy dose of action - Coen brother's movie about about a hitman chases after bystander after drug deal gone bad - No Country for Old Men"
+    when
+    Odpowiedz(pytanie == "A healthy dose of action" && odpowiedz == "Coen brother's movie about about a hitman chases after bystander after drug deal gone bad")
+    then
+    polec(frame, kcontext.getKieRuntime(), "No Country for Old Men");
+end
+
+
+rule "A healthy dose of action - John Woo directed movie where hitman takes job to help woman he accidentaly injured - The Killer"
+    when
+    Odpowiedz(pytanie == "A healthy dose of action" && odpowiedz == "John Woo directed movie where hitman takes job to help woman he accidentaly injured")
+    then
+    polec(frame, kcontext.getKieRuntime(), "The Killer");
+end
+
+
+rule "Mystery"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Father hunts daughters' killer, while the daughter's ghost watches");
+    warianty.add("Journalist works with hacker to find a wealthy girl");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Mystery", warianty);
+    insert (odpowiedz);
+end
+
+rule "Mystery - Father hunts daughters' killer, while the daughter's ghost watches - The Lovely Bones"
+    when
+    Odpowiedz(pytanie == "Mystery" && odpowiedz == "Father hunts daughters' killer, while the daughter's ghost watches")
+    then
+    polec(frame, kcontext.getKieRuntime(), "The Lovely Bones");
+end
+
+
+rule "Mystery - Journalist works with hacker to find a wealthy girl - The Girl with the Dragon Tatoo"
+    when
+    Odpowiedz(pytanie == "Mystery" && odpowiedz == "Journalist works with hacker to find a wealthy girl")
+    then
+    polec(frame, kcontext.getKieRuntime(), "The Girl with the Dragon Tatoo");
+end
+
+
+rule "Something a wee bit different"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Journalist investigates pedophilia in the catholic church");
+    warianty.add("Man videotapes and sells footage of crime scenes");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Something a wee bit different", warianty);
+    insert (odpowiedz);
+end
+
+rule "Something a wee bit different - Journalist investigates pedophilia in the catholic church - Spotlight"
+    when
+    Odpowiedz(pytanie == "Something a wee bit different" && odpowiedz == "Journalist investigates pedophilia in the catholic church")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Spotlight");
+end
+
+
+rule "Something a wee bit different - Man videotapes and sells footage of crime scenes - Nightcrawler"
+    when
+    Odpowiedz(pytanie == "Something a wee bit different" && odpowiedz == "Man videotapes and sells footage of crime scenes")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Nightcrawler");
+end
+
+
+rule "Drama - Horror - undefined"
+    when
+    Odpowiedz(pytanie == "Drama" && odpowiedz == "Horror")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Contemporary Horror");
+    warianty.add("Classic Horror");
+    warianty.add("Cult Horror");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Contemporary Horror"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("A spooky children's character comes live and terrorizes mother");
+    warianty.add("A deaf");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Contemporary Horror", warianty);
+    insert (odpowiedz);
+end
+
+rule "Contemporary Horror - A spooky children's character comes live and terrorizes mother - The Babadook"
+    when
+    Odpowiedz(pytanie == "Contemporary Horror" && odpowiedz == "A spooky children's character comes live and terrorizes mother")
+    then
+    polec(frame, kcontext.getKieRuntime(), "The Babadook");
+end
+
+
+rule "Contemporary Horror - A deaf - mute is trapped in her house by a masked killer"
+    when
+    Odpowiedz(pytanie == "Contemporary Horror" && odpowiedz == "A deaf")
+    then
+    polec(frame, kcontext.getKieRuntime(), "mute is trapped in her house by a masked killer");
+end
+
+
+rule "Classic Horror"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("A couple stumbles upon a strange town with no adults");
+    warianty.add("Some scientists hunt for the shark");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Classic Horror", warianty);
+    insert (odpowiedz);
+end
+
+rule "Classic Horror - A couple stumbles upon a strange town with no adults - Children of the Corn"
+    when
+    Odpowiedz(pytanie == "Classic Horror" && odpowiedz == "A couple stumbles upon a strange town with no adults")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Children of the Corn");
+end
+
+
+rule "Classic Horror - Some scientists hunt for the shark - Jaws"
+    when
+    Odpowiedz(pytanie == "Classic Horror" && odpowiedz == "Some scientists hunt for the shark")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Jaws");
+end
+
+
+rule "Cult Horror"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("A haunted house tortures its family");
+    warianty.add("Extremely gory movie about sadists from another dimension");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Cult Horror", warianty);
+    insert (odpowiedz);
+end
+
+rule "Cult Horror - A haunted house tortures its family - The Amityville Horror"
+    when
+    Odpowiedz(pytanie == "Cult Horror" && odpowiedz == "A haunted house tortures its family")
+    then
+    polec(frame, kcontext.getKieRuntime(), "The Amityville Horror");
+end
+
+
+rule "Cult Horror - Extremely gory movie about sadists from another dimension - Hellraiser"
+    when
+    Odpowiedz(pytanie == "Cult Horror" && odpowiedz == "Extremely gory movie about sadists from another dimension")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Hellraiser");
+end
+
+
+rule "Drama - How about some political biopics? - undefined"
+    when
+    Odpowiedz(pytanie == "Drama" && odpowiedz == "How about some political biopics?")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Cecil Gaines (fictionalized version of Eugene Allen) is a Whitehouse butler for 8 presidents");
+    warianty.add("Jimmy Hoffa, union leader and mob boss who died under mysterious circumstances");
+    warianty.add("WW2 General Patton. \"Rommel you magnificent bastard! I read your book!\"");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Cecil Gaines (fictionalized version of Eugene Allen) is a Whitehouse butler for 8 presidents"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Cecil Gaines (fictionalized version of Eugene Allen) is a Whitehouse butler for 8 presidents", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Jimmy Hoffa, union leader and mob boss who died under mysterious circumstances"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Jimmy Hoffa, union leader and mob boss who died under mysterious circumstances", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "WW2 General Patton. \"Rommel you magnificent bastard! I read your book!\""
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "WW2 General Patton. \"Rommel you magnificent bastard! I read your book!\"", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Drama - Neo - Noir"
+    when
+    Odpowiedz(pytanie == "Drama" && odpowiedz == "Neo")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Christopher Nolan directed movie about stalkers");
+    warianty.add("Iran's first vampire, gangster, western, horror movie?");
+    warianty.add("One of the best of all time: K");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Noir", warianty);
+    insert (odpowiedz);
+end
+
+rule "Noir - Christopher Nolan directed movie about stalkers - Following"
+    when
+    Odpowiedz(pytanie == "Noir" && odpowiedz == "Christopher Nolan directed movie about stalkers")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Following");
+end
+
+
+rule "Noir - Iran's first vampire, gangster, western, horror movie? - A Girl Walks Home Alone at Night"
+    when
+    Odpowiedz(pytanie == "Noir" && odpowiedz == "Iran's first vampire, gangster, western, horror movie?")
+    then
+    polec(frame, kcontext.getKieRuntime(), "A Girl Walks Home Alone at Night");
+end
+
+
+rule "Noir - One of the best of all time: K - Spac relays his story of a robbery gone south."
+    when
+    Odpowiedz(pytanie == "Noir" && odpowiedz == "One of the best of all time: K")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Spac relays his story of a robbery gone south.");
+end
+
+
+rule "Documentaries"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("An inside look into the amateur porn industry");
+    warianty.add("Noam Chomsky looks at wealth inequality in America");
+    warianty.add("A story of Drug Dealers in Florida in the 80s");
+    warianty.add("A study of German Expressionist cinema and facist");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Documentaries", warianty);
+    insert (odpowiedz);
+end
+
+rule "Documentaries - An inside look into the amateur porn industry - Hot Girls Wanted"
+    when
+    Odpowiedz(pytanie == "Documentaries" && odpowiedz == "An inside look into the amateur porn industry")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Hot Girls Wanted");
+end
+
+
+rule "Documentaries - Noam Chomsky looks at wealth inequality in America - Requiem for the American Dream"
+    when
+    Odpowiedz(pytanie == "Documentaries" && odpowiedz == "Noam Chomsky looks at wealth inequality in America")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Requiem for the American Dream");
+end
+
+
+rule "Documentaries - A story of Drug Dealers in Florida in the 80s - Cocaine Cowboys"
+    when
+    Odpowiedz(pytanie == "Documentaries" && odpowiedz == "A story of Drug Dealers in Florida in the 80s")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Cocaine Cowboys");
+end
+
+
+rule "Documentaries - A study of German Expressionist cinema and facist - From Caligari to Hitler"
+    when
+    Odpowiedz(pytanie == "Documentaries" && odpowiedz == "A study of German Expressionist cinema and facist")
+    then
+    polec(frame, kcontext.getKieRuntime(), "From Caligari to Hitler");
+end
+
+
+rule "Timeless classics"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Scientists create a cannon to sent them to the moon");
+    warianty.add("A lawyer defends an innocent black man in the 1930's south");
+    warianty.add("A German Expressionist film where an upper class man leads the lower class in revolt");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Timeless classics", warianty);
+    insert (odpowiedz);
+end
+
+rule "Timeless classics - Scientists create a cannon to sent them to the moon - A Trip to the Moon"
+    when
+    Odpowiedz(pytanie == "Timeless classics" && odpowiedz == "Scientists create a cannon to sent them to the moon")
+    then
+    polec(frame, kcontext.getKieRuntime(), "A Trip to the Moon");
+end
+
+
+rule "Timeless classics - A lawyer defends an innocent black man in the 1930's south - To Kill a Mockingbird"
+    when
+    Odpowiedz(pytanie == "Timeless classics" && odpowiedz == "A lawyer defends an innocent black man in the 1930's south")
+    then
+    polec(frame, kcontext.getKieRuntime(), "To Kill a Mockingbird");
+end
+
+
+rule "Timeless classics - A German Expressionist film where an upper class man leads the lower class in revolt - Metropolis"
+    when
+    Odpowiedz(pytanie == "Timeless classics" && odpowiedz == "A German Expressionist film where an upper class man leads the lower class in revolt")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Metropolis");
+end
+
+
+rule "Would you Like to watch a movie or a Television show? - Television - undefined"
+    when
+    Odpowiedz(pytanie == "Would you Like to watch a movie or a Television show?" && odpowiedz == "Television")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Action");
+    warianty.add("Drama");
+    warianty.add("Comedy");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Action"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Live Action");
+    warianty.add("Anime");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Action", warianty);
+    insert (odpowiedz);
+end
+
+rule "Action - Live Action - undefined"
+    when
+    Odpowiedz(pytanie == "Action" && odpowiedz == "Live Action")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Do you like comics?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Do you like comics?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Marvel?");
+    warianty.add("DC?");
+    warianty.add("SciFi and Fantasy, then.");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Do you like comics?", warianty);
+    insert (odpowiedz);
+end
+
+rule "Do you like comics? - Marvel? - undefined"
+    when
+    Odpowiedz(pytanie == "Do you like comics?" && odpowiedz == "Marvel?")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Super Strong detective with traumatic past");
+    warianty.add("Blind Lawyer fights crime with his super senses");
+    warianty.add("Ex");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Super Strong detective with traumatic past"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Super Strong detective with traumatic past", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Blind Lawyer fights crime with his super senses"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Blind Lawyer fights crime with his super senses", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Ex"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Ex", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Do you like comics? - DC? - undefined"
+    when
+    Odpowiedz(pytanie == "Do you like comics?" && odpowiedz == "DC?")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("If Batman fought with bows");
+    warianty.add("Guy goes fast");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "If Batman fought with bows"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "If Batman fought with bows", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Guy goes fast"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Guy goes fast", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Do you like comics? - SciFi and Fantasy, then. - undefined"
+    when
+    Odpowiedz(pytanie == "Do you like comics?" && odpowiedz == "SciFi and Fantasy, then.")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Fantasy");
+    warianty.add("SciFi");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Fantasy"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Two brothers hunt monsters and demons");
+    warianty.add("Musical Satire of Fairy tales");
+    warianty.add("A retelling of Arthurian legend");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Fantasy", warianty);
+    insert (odpowiedz);
+end
+
+rule "Fantasy - Two brothers hunt monsters and demons - Supernatural"
+    when
+    Odpowiedz(pytanie == "Fantasy" && odpowiedz == "Two brothers hunt monsters and demons")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Supernatural");
+end
+
+
+rule "Fantasy - Musical Satire of Fairy tales - Galavant"
+    when
+    Odpowiedz(pytanie == "Fantasy" && odpowiedz == "Musical Satire of Fairy tales")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Galavant");
+end
+
+
+rule "Fantasy - A retelling of Arthurian legend - Merlin"
+    when
+    Odpowiedz(pytanie == "Fantasy" && odpowiedz == "A retelling of Arthurian legend")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Merlin");
+end
+
+
+rule "SciFi"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Superhero");
+    warianty.add("Nuclear Apocalypse?");
+    warianty.add("People fight crime with help of of pervasive surveilence");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "SciFi", warianty);
+    insert (odpowiedz);
+end
+
+rule "SciFi - Superhero - esque mutants fight crime"
+    when
+    Odpowiedz(pytanie == "SciFi" && odpowiedz == "Superhero")
+    then
+    polec(frame, kcontext.getKieRuntime(), "esque mutants fight crime");
+end
+
+
+rule "SciFi - Nuclear Apocalypse? - undefined"
+    when
+    Odpowiedz(pytanie == "SciFi" && odpowiedz == "Nuclear Apocalypse?")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Surviving generation after nuclear apocalypse");
+    warianty.add("Surviving right after nuclear apocalypse");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Surviving generation after nuclear apocalypse"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Surviving generation after nuclear apocalypse", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Surviving right after nuclear apocalypse"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Surviving right after nuclear apocalypse", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "SciFi - People fight crime with help of of pervasive surveilence - Person of Interest"
+    when
+    Odpowiedz(pytanie == "SciFi" && odpowiedz == "People fight crime with help of of pervasive surveilence")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Person of Interest");
+end
+
+
+rule "Action - Anime - undefined"
+    when
+    Odpowiedz(pytanie == "Action" && odpowiedz == "Anime")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("A highschooler finds a book that kills anyone whose name is in it");
+    warianty.add("Americanime about girls going to school to fight monsters");
+    warianty.add("Japanese schoolgirl gets sent to japan with a demon");
+    warianty.add("The son of Satan decides to fight demons as an exorcist");
+    warianty.add("A country kid moves to Tokyo and becomes involved with the local street politics");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "A highschooler finds a book that kills anyone whose name is in it"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "A highschooler finds a book that kills anyone whose name is in it", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Americanime about girls going to school to fight monsters"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Americanime about girls going to school to fight monsters", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Japanese schoolgirl gets sent to japan with a demon"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Japanese schoolgirl gets sent to japan with a demon", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "The son of Satan decides to fight demons as an exorcist"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "The son of Satan decides to fight demons as an exorcist", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "A country kid moves to Tokyo and becomes involved with the local street politics"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "A country kid moves to Tokyo and becomes involved with the local street politics", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Drama"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("How about some crime?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Drama", warianty);
+    insert (odpowiedz);
+end
+
+rule "Drama - How about some crime? - undefined"
+    when
+    Odpowiedz(pytanie == "Drama" && odpowiedz == "How about some crime?")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Bad guys");
+    warianty.add("What about mindfuckery?");
+    warianty.add("Good Guys");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Bad guys"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Cartel");
+    warianty.add("Biker Gang");
+    warianty.add("Meth Cooks");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Bad guys", warianty);
+    insert (odpowiedz);
+end
+
+rule "Bad guys - Cartel - Narcos"
+    when
+    Odpowiedz(pytanie == "Bad guys" && odpowiedz == "Cartel")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Narcos");
+end
+
+
+rule "Bad guys - Biker Gang - Sons of Anarchy"
+    when
+    Odpowiedz(pytanie == "Bad guys" && odpowiedz == "Biker Gang")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Sons of Anarchy");
+end
+
+
+rule "Bad guys - Meth Cooks - Breaking Bad"
+    when
+    Odpowiedz(pytanie == "Bad guys" && odpowiedz == "Meth Cooks")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Breaking Bad");
+end
+
+
+rule "What about mindfuckery?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("None of that seemed good? Well you can't go wrong with these two");
+    warianty.add("Surreal 90s mystery by David Lynch");
+    warianty.add("Modern Twilight Zone with an emphasis on technology");
+    warianty.add("Classic SciFi serial featuring short, ponderous stories");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "What about mindfuckery?", warianty);
+    insert (odpowiedz);
+end
+
+rule "What about mindfuckery? - None of that seemed good? Well you can't go wrong with these two - undefined"
+    when
+    Odpowiedz(pytanie == "What about mindfuckery?" && odpowiedz == "None of that seemed good? Well you can't go wrong with these two")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Backstabbing senator claws his way through politics");
+    warianty.add("Kids lose their friend to an unearthy creature and track him down");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Backstabbing senator claws his way through politics"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Backstabbing senator claws his way through politics", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Kids lose their friend to an unearthy creature and track him down"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Kids lose their friend to an unearthy creature and track him down", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "What about mindfuckery? - Surreal 90s mystery by David Lynch - Twin Peaks"
+    when
+    Odpowiedz(pytanie == "What about mindfuckery?" && odpowiedz == "Surreal 90s mystery by David Lynch")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Twin Peaks");
+end
+
+
+rule "What about mindfuckery? - Modern Twilight Zone with an emphasis on technology - Black Mirror"
+    when
+    Odpowiedz(pytanie == "What about mindfuckery?" && odpowiedz == "Modern Twilight Zone with an emphasis on technology")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Black Mirror");
+end
+
+
+rule "What about mindfuckery? - Classic SciFi serial featuring short, ponderous stories - The Twilight Zone"
+    when
+    Odpowiedz(pytanie == "What about mindfuckery?" && odpowiedz == "Classic SciFi serial featuring short, ponderous stories")
+    then
+    polec(frame, kcontext.getKieRuntime(), "The Twilight Zone");
+end
+
+
+rule "Good Guys"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("FBI detectives tracking serial killers");
+    warianty.add("Modern British Sherlock Holmes");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Good Guys", warianty);
+    insert (odpowiedz);
+end
+
+rule "Good Guys - FBI detectives tracking serial killers - Criminal Minds"
+    when
+    Odpowiedz(pytanie == "Good Guys" && odpowiedz == "FBI detectives tracking serial killers")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Criminal Minds");
+end
+
+
+rule "Good Guys - Modern British Sherlock Holmes - Sherlock"
+    when
+    Odpowiedz(pytanie == "Good Guys" && odpowiedz == "Modern British Sherlock Holmes")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Sherlock");
+end
+
+
+rule "Comedy"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Live Action");
+    warianty.add("Animated");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Comedy", warianty);
+    insert (odpowiedz);
+end
+
+rule "Comedy - Live Action - undefined"
+    when
+    Odpowiedz(pytanie == "Comedy" && odpowiedz == "Live Action")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Workplace Comedy?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Workplace Comedy?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Only if it's British");
+    warianty.add("Only if it's American");
+    warianty.add("Work? I watch TV to forget about work.");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Workplace Comedy?", warianty);
+    insert (odpowiedz);
+end
+
+rule "Workplace Comedy? - Only if it's British - undefined"
+    when
+    Odpowiedz(pytanie == "Workplace Comedy?" && odpowiedz == "Only if it's British")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Relatable story of dysfunctional workplaces in UK");
+    warianty.add("Socially Awkward IT specialists");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Relatable story of dysfunctional workplaces in UK"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Relatable story of dysfunctional workplaces in UK", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Socially Awkward IT specialists"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Socially Awkward IT specialists", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Workplace Comedy? - Only if it's American - undefined"
+    when
+    Odpowiedz(pytanie == "Workplace Comedy?" && odpowiedz == "Only if it's American")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Relatable story of dysfunctional workplaces in US");
+    warianty.add("What about local government?");
+    warianty.add("Pub owners get caught up in various antics");
+    warianty.add("Two best friends work at a hospital");
+    warianty.add("How about one on a comedy writing team?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Relatable story of dysfunctional workplaces in US"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Relatable story of dysfunctional workplaces in US", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "What about local government?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "What about local government?", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Pub owners get caught up in various antics"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Pub owners get caught up in various antics", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Two best friends work at a hospital"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Two best friends work at a hospital", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "How about one on a comedy writing team?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "How about one on a comedy writing team?", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Workplace Comedy? - Work? I watch TV to forget about work. - undefined"
+    when
+    Odpowiedz(pytanie == "Workplace Comedy?" && odpowiedz == "Work? I watch TV to forget about work.")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("How about Family based comedy?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "How about Family based comedy?"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("A suburban middle child growing up");
+    warianty.add("A rich family deals with their wealth falling apart");
+    warianty.add("I hate my family too. Do you have anything about just friends hanging out?");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "How about Family based comedy?", warianty);
+    insert (odpowiedz);
+end
+
+rule "How about Family based comedy? - A suburban middle child growing up - Malcolm in the Middle"
+    when
+    Odpowiedz(pytanie == "How about Family based comedy?" && odpowiedz == "A suburban middle child growing up")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Malcolm in the Middle");
+end
+
+
+rule "How about Family based comedy? - A rich family deals with their wealth falling apart - Arrested Development"
+    when
+    Odpowiedz(pytanie == "How about Family based comedy?" && odpowiedz == "A rich family deals with their wealth falling apart")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Arrested Development");
+end
+
+
+rule "How about Family based comedy? - I hate my family too. Do you have anything about just friends hanging out? - undefined"
+    when
+    Odpowiedz(pytanie == "How about Family based comedy?" && odpowiedz == "I hate my family too. Do you have anything about just friends hanging out?")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("70s stoners");
+    warianty.add("A man tells his children about his various youthful exploits");
+    warianty.add("An ex");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "70s stoners"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "70s stoners", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "A man tells his children about his various youthful exploits"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "A man tells his children about his various youthful exploits", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "An ex"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "An ex", warianty);
+    insert (odpowiedz);
+end
+
+
+rule "Comedy - Animated - undefined"
+    when
+    Odpowiedz(pytanie == "Comedy" && odpowiedz == "Animated")
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Childrens");
+    warianty.add("Adult");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "undefined", warianty);
+    insert (odpowiedz);
+end
+
+rule "Childrens"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Chaotic toons do shenanigans");
+    warianty.add("Cleverly written show featuring two young geniuses building contraptions");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Childrens", warianty);
+    insert (odpowiedz);
+end
+
+rule "Childrens - Chaotic toons do shenanigans - Pokemon"
+    when
+    Odpowiedz(pytanie == "Childrens" && odpowiedz == "Chaotic toons do shenanigans")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Pokemon");
+end
+
+
+rule "Childrens - Cleverly written show featuring two young geniuses building contraptions - Phineas and Ferb"
+    when
+    Odpowiedz(pytanie == "Childrens" && odpowiedz == "Cleverly written show featuring two young geniuses building contraptions")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Phineas and Ferb");
+end
+
+
+rule "Adult"
+    when
+    then
+    ArrayList<String> warianty = new ArrayList<>();
+    warianty.add("Very unlucky family tries to keep their burger joint in shape");
+    warianty.add("Parody of the super");
+    warianty.add("Old School Halo machinima");
+    Odpowiedz odpowiedz = zapytaj(frame, kcontext.getKieRuntime(), "Adult", warianty);
+    insert (odpowiedz);
+end
+
+rule "Adult - Very unlucky family tries to keep their burger joint in shape - Bob's Burgers"
+    when
+    Odpowiedz(pytanie == "Adult" && odpowiedz == "Very unlucky family tries to keep their burger joint in shape")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Bob's Burgers");
+end
+
+
+rule "Adult - Parody of the super - spy genre"
+    when
+    Odpowiedz(pytanie == "Adult" && odpowiedz == "Parody of the super")
+    then
+    polec(frame, kcontext.getKieRuntime(), "spy genre");
+end
+
+
+rule "Adult - Old School Halo machinima - Red vs. Blue"
+    when
+    Odpowiedz(pytanie == "Adult" && odpowiedz == "Old School Halo machinima")
+    then
+    polec(frame, kcontext.getKieRuntime(), "Red vs. Blue");
+end
+
+function void polec(JFrame frame, KieRuntime krt, String polecane) {
+    final JPanel panel = new JPanel();
+    String text = polecane;
+    panel.add(new JLabel(text));
+    JOptionPane.showMessageDialog(frame, panel);
+}
+
+function Odpowiedz zapytaj(JFrame frame, KieRuntime krt, String trescPytania, ArrayList odpowiedzi) {
+
+    class Sluchacz implements ItemListener {
+        private Odpowiedz odpowiedz;
+        private String chosen;
+        public Sluchacz(Odpowiedz odp, String wybrana) {
+            this.odpowiedz = odp;
+            this.chosen = wybrana;
+        }
+
+        @Override
+        public void itemStateChanged(ItemEvent event) {
+            if (event.getStateChange() == ItemEvent.SELECTED) {
+                odpowiedz.setOdpowiedz(chosen);
+            }
+        }
+    }
+    Odpowiedz odpowiedz = new Odpowiedz(trescPytania, (String) odpowiedzi.get(0));
+
+    final JPanel panel = new JPanel(new GridLayout(0, 1));
+    panel.add(new JLabel(trescPytania));
+
+    ArrayList < JRadioButton > listaButtonow = new ArrayList < > ();
+
+    for (int i = 0; i < odpowiedzi.size(); i++) {
+        String text = (String) odpowiedzi.get(i);
+        JRadioButton nowy = new JRadioButton(text);
+        Sluchacz nowySluchacz = new Sluchacz(odpowiedz, text);
+        nowy.addItemListener(nowySluchacz);
+        listaButtonow.add(nowy);
+    }
+
+    listaButtonow.get(0).setSelected(true);
+    odpowiedz.setOdpowiedz((String) odpowiedzi.get(0));
+
+    ButtonGroup group = new ButtonGroup();
+    for (int i = 0; i < listaButtonow.size(); i++) {
+        group.add(listaButtonow.get(i));
+        panel.add(listaButtonow.get(i));
+    }
+    Object[] options = {
+        "Proceed"
+    };
+    if (JOptionPane.showConfirmDialog(frame, panel, "Question", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE) < 0) {
+        odpowiedz.setOdpowiedz("Zakoncz program");
+    }
+
+    return odpowiedz;
+}
